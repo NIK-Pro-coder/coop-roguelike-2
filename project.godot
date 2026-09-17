@@ -32,7 +32,8 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://enemies/": "red",
 "res://items/": "yellow",
-"res://player/": "green"
+"res://player/": "green",
+"res://spells/": "purple"
 }
 
 [global_group]

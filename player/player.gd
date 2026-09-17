@@ -42,6 +42,9 @@ func handle_attack(delta: float) -> void:
     melee_weapon.attack(self, direction)
     melee_weapon_cooldown = melee_weapon.cooldown
 
+var max_soul: float = 100.0
+var soul: float = 0.0
+
 func _process(delta: float) -> void:
   handle_movement(delta)
   handle_attack(delta)

@@ -1,9 +1,9 @@
 # Coop Roguelike 2: Roadmap
 
 ## Alpha
- - [ ] Player Movement
- - [ ] Basic Weapon
- - [ ] Basic Enemy
+ - [x] Player Movement
+ - [x] Basic Weapon
+ - [x] Basic Enemy
  - [ ] Basic Spells
  - [ ] Wave Logic (to be replaced later)
  - [ ] Inventory ui
