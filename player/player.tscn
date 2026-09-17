@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dw1078phksnim"]
+
+[ext_resource type="Script" uid="uid://c7b5ipct15eyx" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Resource" uid="uid://1qqp4p4cnibr" path="res://items/weapons/sword.tres" id="2_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="2_rkbax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd3ek"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D" unique_id=270238660 groups=["player"]]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_oul6g")
+melee_weapon = ExtResource("2_g1dw6")
+metadata/_custom_type_script = "uid://c7b5ipct15eyx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225263039]
+shape = SubResource("RectangleShape2D_jd3ek")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=506429977]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_rkbax")

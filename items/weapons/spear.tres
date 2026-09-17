@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="HitboxWeaponItem" format=3 uid="uid://b0an50po80ohu"]
+
+[ext_resource type="Script" uid="uid://bxgyxaitdga0w" path="res://items/scripts/hitbox_weapon.gd" id="1_y05q7"]
+
+[resource]
+script = ExtResource("1_y05q7")
+hitbox_lifetime = 0.15
+distance = 70.0
+hitstun = 0.35
+hitbox_size = Vector2(20, 100)
+cooldown = 0.3
+damage = 10.0
+area = 2000.0
+name = "Spear"
+description = "Poke at enemies from a greater range that with the standard sword"
+flavour = "Tis just a spear mate"
+metadata/_custom_type_script = "uid://bxgyxaitdga0w"

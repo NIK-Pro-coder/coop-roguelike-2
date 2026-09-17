@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="HitboxWeaponItem" format=3 uid="uid://1qqp4p4cnibr"]
+
+[ext_resource type="Script" uid="uid://bxgyxaitdga0w" path="res://items/scripts/hitbox_weapon.gd" id="1_oxryh"]
+
+[resource]
+script = ExtResource("1_oxryh")
+hitbox_lifetime = 0.1
+distance = 30.0
+hitstun = 0.25
+hitbox_size = Vector2(50, 30)
+cooldown = 0.2
+damage = 15.0
+area = 1500.0
+name = "Sword"
+description = "Basic ahh weapon"
+flavour = "Tis just a sword mate"
+metadata/_custom_type_script = "uid://bxgyxaitdga0w"

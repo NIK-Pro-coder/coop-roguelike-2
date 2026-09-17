@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dtiwmdwq0k7n6"]
+
+[ext_resource type="Script" uid="uid://d20er4w3mh0mb" path="res://damage/hurtbox.gd" id="1_02xms"]
+[ext_resource type="Script" uid="uid://d00n7o13uwlei" path="res://enemies/base_enemy/base_enemy.gd" id="1_8sayp"]
+[ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="1_lxi62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
+size = Vector2(32, 32)
+
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1494316955]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_8sayp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1107918661]
+shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=109013674]
+unique_name_in_owner = true
+script = ExtResource("1_02xms")
+team = 1
+max_hp = 100.0
+metadata/_custom_type_script = "uid://d20er4w3mh0mb"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=227043767]
+shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=611216191]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_lxi62")
+
+[node name="RetargetTimer" type="Timer" parent="." unique_id=2112913472]
+unique_name_in_owner = true
+autostart = true

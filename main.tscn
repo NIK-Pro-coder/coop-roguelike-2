@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbauy1srk2kfd"]
+
+[ext_resource type="Script" uid="uid://2vihhn0dyycj" path="res://systems/player_mngr.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://4j7qqm4kgf7r" path="res://player/main_cam.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dtiwmdwq0k7n6" path="res://enemies/base_enemy/base_enemy.tscn" id="3_h2yge"]
+
+[node name="Main" type="Node" unique_id=1090685560]
+
+[node name="PlayerMngr" type="Node" parent="." unique_id=720732213]
+script = ExtResource("1_ig7tw")
+metadata/_custom_type_script = "uid://2vihhn0dyycj"
+
+[node name="MainCam" type="Camera2D" parent="." unique_id=14610610]
+script = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://4j7qqm4kgf7r"
+
+[node name="BaseEnemy" parent="." unique_id=1494316955 instance=ExtResource("3_h2yge")]
+position = Vector2(-40, 48)
