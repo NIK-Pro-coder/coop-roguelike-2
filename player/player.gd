@@ -4,7 +4,7 @@ class_name Player
 const SPEED: float = 600.0
 const ACCEL: float = 100.0
 
-@export var DEVICE_ID: int = 0
+@export var DEVICE_ID: int = -1
 
 func get_movement_dir() -> Vector2:
   return InputMngr.get_vector(
@@ -12,11 +12,35 @@ func get_movement_dir() -> Vector2:
     "move_up", "move_down",
     DEVICE_ID
   )
+func get_aim_dir() -> Vector2:
+  if DEVICE_ID >= 0:
+    return InputMngr.get_vector(
+      "aim_left", "aim_right",
+      "aim_up", "aim_down",
+      DEVICE_ID
+    )
+  
+  return (get_global_mouse_position() - global_position).normalized()
+
+var dash_timer: float = -0.5
+var dash_dir: Vector2 = Vector2.ZERO
+
+func handle_movement(delta: float) -> void:
+  dash_timer -= delta
+  
+  if dash_timer > 0:
+    velocity = dash_dir * SPEED * delta * 180
+  else:
+    velocity = velocity.move_toward(
+      get_movement_dir() * SPEED * delta * 60,
+      ACCEL * delta * 60
+    )
+    
+    if dash_timer < -.5 and InputMngr.is_action_pressed("dodge", DEVICE_ID):
+      dash_dir = get_movement_dir()
+      dash_timer = 0.25
+    
+  move_and_slide()
 
 func _process(delta: float) -> void:
-  velocity = velocity.move_toward(
-    get_movement_dir() * SPEED * delta * 60,
-    ACCEL * delta * 60
-  )
-  
-  move_and_slide()
+  handle_movement(delta)
