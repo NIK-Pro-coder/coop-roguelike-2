@@ -18,4 +18,7 @@ func attack(player: Player, dir: Vector2) -> void:
     
     b.rotation += (i - (bullet_amount - 1.0) / 2) * bullet_spread
     
+    for k in extra_args:
+      b[k] = extra_args[k]
+    
     player.get_tree().get_root().add_child.call_deferred(b)

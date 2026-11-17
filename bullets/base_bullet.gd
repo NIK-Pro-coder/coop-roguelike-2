@@ -1,9 +1,10 @@
 extends CharacterBody2D
-class_name Bullet
+class_name BaseBullet
 
-@export var SPEED: float = 900.0
+@export var speed: float
+@export var damage: int
 
 func _process(delta: float) -> void:
-  velocity = Vector2.from_angle(rotation) * SPEED * delta * 60
+  velocity = Vector2.from_angle(rotation) * speed * delta * 60
   
   move_and_slide()

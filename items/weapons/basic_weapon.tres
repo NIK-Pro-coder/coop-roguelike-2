@@ -11,5 +11,8 @@ bullet_amount = 2
 bullet_spread = 0.1
 rotate_to_aim = true
 spawn_at_player = true
+extra_args = Dictionary[String, Variant]({
+"speed": 900.0
+})
 name = "Basic Weapon"
 metadata/_custom_type_script = "uid://lvjgi4bq58wf"

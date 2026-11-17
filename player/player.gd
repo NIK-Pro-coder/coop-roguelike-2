@@ -22,22 +22,26 @@ func get_aim_dir() -> Vector2:
   
   return (get_global_mouse_position() - global_position).normalized()
 
+const DASH_SPEED_MULT: float = 4.0
+const DASH_DURATION: float = 0.1
+const DASH_COOLDOWN: float = 0.5
+
 var dash_timer: float = -0.5
 var dash_dir: Vector2 = Vector2.ZERO
 func handle_movement(delta: float) -> void:
   dash_timer -= delta
   
   if dash_timer > 0:
-    velocity = dash_dir * SPEED * delta * 180
+    velocity = dash_dir * SPEED * DASH_SPEED_MULT * delta * 60
   else:
+    var new_v := get_movement_dir() * SPEED * delta * 60
     velocity = velocity.move_toward(
-      get_movement_dir() * SPEED * delta * 60,
-      ACCEL * delta * 60
+      new_v, ACCEL * delta * 60 * max(1, -velocity.dot(new_v) * 1.5)
     )
     
-    if dash_timer < -.5 and InputMngr.is_action_pressed("dodge", DEVICE_ID):
+    if dash_timer < -DASH_COOLDOWN and InputMngr.is_action_pressed("dodge", DEVICE_ID):
       dash_dir = get_movement_dir()
-      dash_timer = 0.25
+      dash_timer = DASH_DURATION
     
   move_and_slide()
 
