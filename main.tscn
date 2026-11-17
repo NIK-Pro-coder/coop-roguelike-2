@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://bbauy1srk2kfd"]
 
 [ext_resource type="PackedScene" uid="uid://dw1078phksnim" path="res://player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://jn5yuvc2vbf8" path="res://enemies/base_enemy.tscn" id="2_h2yge"]
+[ext_resource type="Resource" uid="uid://bbeva6sf8lm45" path="res://enemies/enemy_data/grunt_enemy_data.tres" id="3_1bvp3"]
 
 [node name="Main" type="Node2D" unique_id=2128504674]
 
 [node name="Player" parent="." unique_id=667280632 instance=ExtResource("1_ig7tw")]
 position = Vector2(176, 152)
+
+[node name="BaseEnemy" parent="." unique_id=1036883504 instance=ExtResource("2_h2yge")]
+position = Vector2(200, 360)
+enemy_data = ExtResource("3_1bvp3")

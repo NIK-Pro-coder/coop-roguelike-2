@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
 size = Vector2(128, 128)
 
-[node name="Player" type="CharacterBody2D" unique_id=667280632]
+[node name="Player" type="CharacterBody2D" unique_id=667280632 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_rkbax")
