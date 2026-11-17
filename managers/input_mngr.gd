@@ -11,6 +11,8 @@ func is_action_pressed(action: String, device: int) -> float:
     if device == -1:
       if i is InputEventKey:
         return 1.0 if Input.is_physical_key_pressed(i.physical_keycode) else 0.0
+      elif i is InputEventMouseButton:
+        return 1.0 if Input.is_mouse_button_pressed(i.button_index) else 0.0
     elif device >= 0:
       if i is InputEventJoypadButton:
         return 1.0 if Input.is_joy_button_pressed(device, i.button_index) else 0.0

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://cl6acm7ck2bsk"]
+
+[ext_resource type="Script" uid="uid://lvjgi4bq58wf" path="res://items/weapons/base_weapon.gd" id="1_0upr4"]
+[ext_resource type="PackedScene" uid="uid://bxjuxqmge07hy" path="res://bullets/base_bullet.tscn" id="2_d5kkv"]
+
+[resource]
+script = ExtResource("1_0upr4")
+cooldown = 0.5
+spawn_scene = ExtResource("2_d5kkv")
+bullet_amount = 2
+bullet_spread = 0.1
+rotate_to_aim = true
+spawn_at_player = true
+name = "Basic Weapon"
+metadata/_custom_type_script = "uid://lvjgi4bq58wf"

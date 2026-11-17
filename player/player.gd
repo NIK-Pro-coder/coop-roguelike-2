@@ -24,7 +24,6 @@ func get_aim_dir() -> Vector2:
 
 var dash_timer: float = -0.5
 var dash_dir: Vector2 = Vector2.ZERO
-
 func handle_movement(delta: float) -> void:
   dash_timer -= delta
   
@@ -42,5 +41,16 @@ func handle_movement(delta: float) -> void:
     
   move_and_slide()
 
+@export var weapon: Weapon
+
+var weapon_cooldown: float = 0.0
+func handle_weapon(delta: float) -> void:
+  weapon_cooldown -= delta
+  
+  if weapon_cooldown < 0.0 and InputMngr.is_action_pressed("attack", DEVICE_ID):
+    weapon.attack(self, get_aim_dir()) # TODO: Aim assist
+    weapon_cooldown = weapon.cooldown
+
 func _process(delta: float) -> void:
   handle_movement(delta)
+  handle_weapon(delta)
