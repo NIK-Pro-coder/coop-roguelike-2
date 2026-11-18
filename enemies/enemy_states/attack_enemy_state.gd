@@ -1,5 +1,5 @@
 extends BaseEnemyState
-class_name AttackEnemyState
+class_name BaseAttackEnemyState
 
 func get_score(enemy: BaseEnemy) -> float:
   var distance: float = enemy.target.global_position.distance_squared_to(enemy.global_position)
@@ -10,6 +10,11 @@ func get_score(enemy: BaseEnemy) -> float:
   return 1.0
 
 func process_state(enemy: BaseEnemy, _delta: float) -> void:
-  enemy.attack(func():
+  enemy.attack(attack(enemy))
+
+@warning_ignore("unused_parameter")
+func attack(enemy: BaseEnemy) -> Callable:
+  var f = func():
     print("attack")
-  )
+  
+  return f

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://brq2f6ls3cm8g" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Resource" uid="uid://cl6acm7ck2bsk" path="res://items/weapons/basic_weapon.tres" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://banb8nq0vrf4s" path="res://hitboxes/base_hurtbox.gd" id="4_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
 size = Vector2(128, 128)
@@ -17,4 +18,12 @@ weapon = ExtResource("2_g1dw6")
 texture = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1152487594]
+shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=637275454]
+script = ExtResource("4_yw30f")
+metadata/_custom_type_script = "uid://banb8nq0vrf4s"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=93728994]
+visible = false
 shape = SubResource("RectangleShape2D_wbm84")

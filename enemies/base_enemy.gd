@@ -4,6 +4,7 @@ class_name BaseEnemy
 @onready var attack_indicator: Sprite2D = %AttackIndicator
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var collision: CollisionShape2D = %Collision
+@onready var hurtbox_collision: CollisionShape2D = %HurtboxCollision
 
 @export var enemy_data: EnemyData
 
@@ -18,6 +19,8 @@ func _ready() -> void:
   enemy_data = enemy_data.duplicate(true)
   
   collision.shape = enemy_data.collision
+  hurtbox_collision.shape = enemy_data.collision
+  
   sprite.sprite_frames = enemy_data.sprite_frames
   sprite.scale = enemy_data.scale
   

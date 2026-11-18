@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cfyc0vm6jch5h" path="res://enemies/enemy_data/enemy_data.gd" id="1_sehar"]
 [ext_resource type="Script" uid="uid://uw1nsq3a5mji" path="res://enemies/enemy_states/base_enemy_state.gd" id="2_73vcr"]
 [ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="2_s0h5o"]
-[ext_resource type="Script" uid="uid://bauapw3xsyak7" path="res://enemies/enemy_states/attack_enemy_state.gd" id="4_cbg0v"]
 [ext_resource type="Script" uid="uid://bnqbdjwlgcr6o" path="res://enemies/enemy_states/chase_enemy_state.gd" id="5_i1xly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u564y"]
@@ -19,11 +18,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="Resource" id="Resource_s0h5o"]
-script = ExtResource("4_cbg0v")
-state_weight = 2
-metadata/_custom_type_script = "uid://bauapw3xsyak7"
 
 [sub_resource type="Resource" id="Resource_cbg0v"]
 script = ExtResource("5_i1xly")
@@ -41,5 +35,5 @@ sprite_frames = SubResource("SpriteFrames_uly8o")
 windup = 0.25
 cooldown = 0.5
 atk_range = 300.0
-states = Array[ExtResource("2_73vcr")]([SubResource("Resource_s0h5o"), SubResource("Resource_cbg0v")])
+states = Array[ExtResource("2_73vcr")]([SubResource("Resource_cbg0v")])
 metadata/_custom_type_script = "uid://cfyc0vm6jch5h"
