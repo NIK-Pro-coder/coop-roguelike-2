@@ -21,10 +21,12 @@ func _process(_delta: float) -> void:
   for i in get_overlapping_areas():
     hurtbox_entered(i)
 
+signal hit_node(node: Node)
+
 func hurtbox_entered(hurtbox: Hurtbox) -> void:
   var parent := hurtbox.attempt_hit(self)
   
   if !parent:
     return
 
-  print(parent)
+  hit_node.emit(parent)

@@ -21,4 +21,4 @@ func attack(player: Player, dir: Vector2) -> void:
     for k in extra_args:
       b[k] = extra_args[k]
     
-    player.get_tree().get_root().add_child.call_deferred(b)
+    player.get_tree().get_root().add_child(b)

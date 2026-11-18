@@ -11,7 +11,5 @@ func get_score(enemy: BaseEnemy) -> float:
 
   return 1.0
 
-func process_state(enemy: BaseEnemy, delta: float) -> void:
-  var dir := (enemy.target.global_position - enemy.global_position).normalized()
-  enemy.velocity = dir * enemy.enemy_data.speed * delta * 60
-  enemy.move_and_slide()
+func process_state(enemy: BaseEnemy, _delta: float) -> void:
+  enemy.move_position = enemy.target.global_position

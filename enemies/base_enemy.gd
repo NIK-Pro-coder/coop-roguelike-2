@@ -50,7 +50,12 @@ func attack(what: Callable):
   attack_cooldown = enemy_data.cooldown
   attack_callable = what
 
+var move_position: Vector2 = Vector2.ZERO
+
 func _process(delta: float) -> void:
+  if health <= 0:
+    queue_free()
+  
   state_time -= delta
   
   attack_indicator.modulate.a = 0.0
@@ -88,3 +93,11 @@ func _process(delta: float) -> void:
     state_time = 0.25 # Minimum duration
     
   current_state.process_state(self, delta)
+  
+  var p_delta: Vector2 = move_position - global_position
+  velocity = velocity.move_toward(
+    p_delta.normalized() * enemy_data.speed * delta * 60,
+    enemy_data.speed * delta * 15
+  )
+
+  move_and_slide()

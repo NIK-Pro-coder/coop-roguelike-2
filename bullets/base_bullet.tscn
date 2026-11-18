@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="1_ovbbc"]
 [ext_resource type="Script" uid="uid://xgyjp2iarxfj" path="res://bullets/base_bullet.gd" id="1_sxnja"]
+[ext_resource type="Script" uid="uid://jrkrkwyju7rk" path="res://hitboxes/base_hitbox.gd" id="3_u1xu0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wbm84"]
 radius = 16.0
@@ -15,5 +16,12 @@ script = ExtResource("1_sxnja")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_ovbbc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1346121264]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1668390296]
+unique_name_in_owner = true
+script = ExtResource("3_u1xu0")
+metadata/_custom_type_script = "uid://jrkrkwyju7rk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1346121264]
 shape = SubResource("CircleShape2D_wbm84")
+
+[connection signal="hit_node" from="Hitbox" to="." method="_on_hitbox_hit_node"]

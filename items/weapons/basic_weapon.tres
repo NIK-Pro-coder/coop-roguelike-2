@@ -12,6 +12,8 @@ bullet_spread = 0.1
 rotate_to_aim = true
 spawn_at_player = true
 extra_args = Dictionary[String, Variant]({
+"damage": 1,
+"local_duration": 0.5,
 "speed": 900.0
 })
 name = "Basic Weapon"
