@@ -19,7 +19,23 @@ size = Vector2(576, 144)
 position = Vector2(176, 152)
 
 [node name="BaseEnemy" parent="." unique_id=1036883504 instance=ExtResource("2_h2yge")]
-position = Vector2(136, 368)
+position = Vector2(448, 456)
+enemy_data = ExtResource("3_1bvp3")
+
+[node name="BaseEnemy2" parent="." unique_id=1543262529 instance=ExtResource("2_h2yge")]
+position = Vector2(520, 456)
+enemy_data = ExtResource("3_1bvp3")
+
+[node name="BaseEnemy3" parent="." unique_id=1887535966 instance=ExtResource("2_h2yge")]
+position = Vector2(608, 456)
+enemy_data = ExtResource("3_1bvp3")
+
+[node name="BaseEnemy4" parent="." unique_id=939227465 instance=ExtResource("2_h2yge")]
+position = Vector2(712, 456)
+enemy_data = ExtResource("3_1bvp3")
+
+[node name="BaseEnemy5" parent="." unique_id=1986517334 instance=ExtResource("2_h2yge")]
+position = Vector2(800, 456)
 enemy_data = ExtResource("3_1bvp3")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=153564282]

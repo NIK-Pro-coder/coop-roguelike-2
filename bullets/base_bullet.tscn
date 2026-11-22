@@ -9,7 +9,6 @@ radius = 4.0
 
 [node name="BaseBullet" type="CharacterBody2D" unique_id=272365184]
 collision_layer = 0
-collision_mask = 4
 script = ExtResource("1_sxnja")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1930876332]
@@ -22,6 +21,10 @@ script = ExtResource("3_u1xu0")
 metadata/_custom_type_script = "uid://jrkrkwyju7rk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1346121264]
+shape = SubResource("CircleShape2D_wbm84")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=487000402]
+visible = false
 shape = SubResource("CircleShape2D_wbm84")
 
 [connection signal="hit_node" from="Hitbox" to="." method="_on_hitbox_hit_node"]
