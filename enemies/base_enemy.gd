@@ -6,6 +6,7 @@ class_name BaseEnemy
 @onready var collision: CollisionShape2D = %Collision
 @onready var hurtbox_collision: CollisionShape2D = %HurtboxCollision
 @onready var nav_agent: NavigationAgent2D = %NavAgent
+@onready var contact_hitbox: Hitbox = %ContactHitbox
 
 @export var enemy_data: EnemyData
 
@@ -26,6 +27,8 @@ func _ready() -> void:
   sprite.scale = enemy_data.scale
   
   health = enemy_data.health
+  
+  contact_hitbox.active = enemy_data.has_contact_damage
 
 var target: Player
 var retarget_timeout: float = 0.0
@@ -114,3 +117,6 @@ func _process(delta: float) -> void:
 
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
   safe_vel = safe_velocity
+
+func _on_contact_hitbox_hit_node(p: Player) -> void:
+  p.health -= 10

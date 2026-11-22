@@ -21,6 +21,7 @@ class_name EnemyData
 @export var cooldown: float = 0.0
 @export var atk_range: float = 0.0
 @export var token_weight: int = 1
+@export var has_contact_damage: bool = false
 
 @export_category("Behaviour")
 @export var states: Array[BaseEnemyState] = []

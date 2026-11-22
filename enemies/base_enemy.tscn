@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btujxg04b715a" path="res://enemies/base_enemy.gd" id="1_bfj6p"]
 [ext_resource type="Texture2D" uid="uid://bnpmqtbg52bbb" path="res://icon.svg" id="2_b5ht1"]
 [ext_resource type="Script" uid="uid://banb8nq0vrf4s" path="res://hitboxes/base_hurtbox.gd" id="3_b5ht1"]
+[ext_resource type="Script" uid="uid://jrkrkwyju7rk" path="res://hitboxes/base_hitbox.gd" id="4_xens1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wbm84"]
 animations = [{
@@ -54,10 +55,24 @@ metadata/_custom_type_script = "uid://banb8nq0vrf4s"
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_wbm84")
 
+[node name="ContactHitbox" type="Area2D" parent="." unique_id=1272314125]
+unique_name_in_owner = true
+script = ExtResource("4_xens1")
+team = 4
+local_name = "contact_damage"
+local_duration = 1.0
+hit_inactive = true
+metadata/_custom_type_script = "uid://jrkrkwyju7rk"
+
+[node name="HurtboxCollision2" type="CollisionShape2D" parent="ContactHitbox" unique_id=687276840]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_wbm84")
+
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=2139169816]
 unique_name_in_owner = true
 simplify_path = true
 avoidance_enabled = true
 radius = 24.0
 
+[connection signal="hit_node" from="ContactHitbox" to="." method="_on_contact_hitbox_hit_node"]
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

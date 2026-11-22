@@ -29,3 +29,12 @@ metadata/_custom_type_script = "uid://banb8nq0vrf4s"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=93728994]
 shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=305959956]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 24.0
+offset_bottom = 32.0
+show_percentage = false

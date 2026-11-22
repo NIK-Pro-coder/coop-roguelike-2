@@ -30,6 +30,11 @@ func get_aim_dir() -> Vector2:
   if DebugMngr.aim_assist_visible:
     DebugMngr.line(
       global_position,
+      global_position + get_aim_dir() * 250,
+      Color.GREEN
+    )
+    DebugMngr.line(
+      global_position,
       global_position + base_vec.rotated(acos(MIN_AIM_ASSIST_DOT)) * 500,
       Color.BLUE
     )
@@ -114,13 +119,26 @@ func handle_weapon(delta: float) -> void:
     weapon.attack(self, get_aim_dir()) # TODO: Aim assist
     weapon_cooldown = weapon.cooldown
 
+@onready var health_bar: ProgressBar = %HealthBar
+
+var hp_visible: float = 0.0
+
 func _process(delta: float) -> void:
   handle_movement(delta)
   handle_weapon(delta)
 
-  if DebugMngr.aim_assist_visible:
-    DebugMngr.line(
-      global_position,
-      global_position + get_aim_dir() * 250,
-      Color.GREEN
-    )
+  if Input.is_action_pressed("interact"): hp_visible = max(.5, hp_visible)
+  
+  hp_visible -= delta
+  health_bar.modulate.a = health_bar.modulate.a * .9 + (.1 if hp_visible > 0 else 0.0)
+  health_bar.value = health_bar.value * .75 + health * .25
+
+var max_health: int = 100
+var health: int = 0:
+  set(v):
+    health = v
+    hp_visible = max(2.5, hp_visible + 2.5)
+
+func _ready() -> void:
+  health = max_health
+  hp_visible = 0

@@ -7,6 +7,7 @@ enum HurtboxTeams {
 }
 
 @export var team: HurtboxTeams = HurtboxTeams.Player
+
 var active: bool = true
 
 var color: Color
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
       i.debug_color = color if active else Color(1.0, 1.0, 1.0, 0.2)
 
 func attempt_hit(hitbox: Hitbox) -> Node:
-  if !active: return null
+  if !active and !hitbox.hit_inactive: return null
   
   if hitbox.local_name in iframes:
     return null

@@ -36,5 +36,6 @@ scale = Vector2(0.25, 0.25)
 windup = 0.25
 cooldown = 0.5
 atk_range = 300.0
+has_contact_damage = true
 states = Array[ExtResource("2_73vcr")]([SubResource("Resource_cbg0v")])
 metadata/_custom_type_script = "uid://cfyc0vm6jch5h"
