@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dfk1vx5i3132l"]
+
+[ext_resource type="Script" uid="uid://cyqboiaoalc6i" path="res://debug_ui/debug_ui.gd" id="1_uym8b"]
+
+[node name="DebugUI" type="Control" unique_id=2094761633]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uym8b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1041308613]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1438198488]
+layout_mode = 2
+
+[node name="FreezeEnemies" type="CheckButton" parent="HBoxContainer/VBoxContainer" unique_id=1134077121]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Freeze enemies"
+
+[node name="VisibleAimAssist" type="CheckButton" parent="HBoxContainer/VBoxContainer" unique_id=1943310509]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Aim assist debug"

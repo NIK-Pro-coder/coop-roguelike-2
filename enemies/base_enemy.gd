@@ -93,13 +93,17 @@ func _process(delta: float) -> void:
         current_state = i
     
     state_time = 0.25 # Minimum duration
+  
+  if DebugMngr.enemies_frozen:
+    nav_agent.velocity = Vector2.ZERO
+  else:
+    current_state.process_state(self, delta)
+    DebugMngr.string(current_state.get_script().get_global_name(), global_position)
     
-  current_state.process_state(self, delta)
-  
-  nav_agent.target_position = move_position
-  
-  var p_delta: Vector2 = nav_agent.get_next_path_position() - global_position
-  nav_agent.velocity = p_delta.normalized() * enemy_data.speed * delta * 60
+    nav_agent.target_position = move_position
+    
+    var p_delta: Vector2 = nav_agent.get_next_path_position() - global_position
+    nav_agent.velocity = p_delta.normalized() * enemy_data.speed * delta * 60
   
   velocity = velocity.move_toward(
     safe_vel,

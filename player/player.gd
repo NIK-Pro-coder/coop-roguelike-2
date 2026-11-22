@@ -14,17 +14,63 @@ func get_movement_dir() -> Vector2:
     "move_up", "move_down",
     DEVICE_ID
   )
+
+const MIN_AIM_ASSIST_DOT: float = .95
+const MAX_RAD_ASSIST: float = deg_to_rad(7)
 func get_aim_dir() -> Vector2:
-  var base_vec: Vector2 = Vector2.ZERO
-  
-  if DEVICE_ID >= 0:
-    base_vec = InputMngr.get_vector(
+  if DEVICE_ID < 0:
+    return (get_global_mouse_position() - global_position).normalized()
+
+  var base_vec: Vector2 = InputMngr.get_vector(
       "aim_left", "aim_right",
       "aim_up", "aim_down",
       DEVICE_ID
     )
-  else :
-    base_vec = (get_global_mouse_position() - global_position).normalized()
+
+  if DebugMngr.aim_assist_visible:
+    DebugMngr.line(
+      global_position,
+      global_position + base_vec.rotated(acos(MIN_AIM_ASSIST_DOT)) * 500,
+      Color.BLUE
+    )
+    DebugMngr.line(
+      global_position,
+      global_position + base_vec.rotated(-acos(MIN_AIM_ASSIST_DOT)) * 500,
+      Color.BLUE
+    )
+
+  var c_enemy: BaseEnemy
+  var c_cross: float = -1.0
+
+  for i: BaseEnemy in get_tree().get_nodes_in_group("enemy"):
+    var delta: Vector2 = i.global_position - global_position
+    var dot: float = delta.normalized().dot(base_vec)
+    if dot <= MIN_AIM_ASSIST_DOT: continue
+    
+    var cross: float = abs(delta.cross(base_vec))
+    
+    if DebugMngr.aim_assist_visible:
+      DebugMngr.line(global_position,i.global_position)
+      DebugMngr.string(dot, i.global_position + Vector2(0, 20))
+  
+    if cross < c_cross or c_cross < 0:
+      c_cross = cross
+      c_enemy = i
+
+  if c_enemy:
+    var delta: Vector2 = c_enemy.global_position - global_position
+    var angle_off: float = base_vec.angle_to(delta)
+    
+    var new_v: Vector2 = base_vec.rotated(
+      clamp(angle_off, -MAX_RAD_ASSIST, MAX_RAD_ASSIST)
+    )
+    
+    if DebugMngr.aim_assist_visible:
+      DebugMngr.line(global_position, global_position + base_vec * 250, Color.ORANGE)
+      DebugMngr.circle(c_enemy.global_position, 30)
+      DebugMngr.string(angle_off, c_enemy.global_position)
+    
+    return new_v
 
   return base_vec
 
@@ -72,7 +118,9 @@ func _process(delta: float) -> void:
   handle_movement(delta)
   handle_weapon(delta)
 
-  DebugMngr.line(
-    global_position,
-    global_position + get_aim_dir() * 50
-  )
+  if DebugMngr.aim_assist_visible:
+    DebugMngr.line(
+      global_position,
+      global_position + get_aim_dir() * 250,
+      Color.GREEN
+    )
