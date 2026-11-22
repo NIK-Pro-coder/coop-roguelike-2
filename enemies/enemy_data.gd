@@ -22,5 +22,5 @@ class_name EnemyData
 @export var atk_range: float = 0.0
 @export var token_weight: int = 1
 
-@export_category("Behaviours")
+@export_category("Behaviour")
 @export var states: Array[BaseEnemyState] = []

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://banb8nq0vrf4s" path="res://hitboxes/base_hurtbox.gd" id="4_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
-size = Vector2(128, 128)
+size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=667280632 groups=["player"]]
 collision_layer = 2
@@ -15,15 +15,17 @@ script = ExtResource("1_rkbax")
 weapon = ExtResource("2_g1dw6")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1236519870]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1152487594]
+visible = false
 shape = SubResource("RectangleShape2D_wbm84")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=637275454]
+unique_name_in_owner = true
 script = ExtResource("4_yw30f")
 metadata/_custom_type_script = "uid://banb8nq0vrf4s"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=93728994]
-visible = false
 shape = SubResource("RectangleShape2D_wbm84")

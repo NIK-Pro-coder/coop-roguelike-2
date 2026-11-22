@@ -15,8 +15,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5ht1"]
+radius = 16.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
-size = Vector2(128, 128)
+size = Vector2(32, 32)
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1036883504]
 collision_layer = 4
@@ -24,19 +27,22 @@ script = ExtResource("1_bfj6p")
 
 [node name="AttackIndicator" type="Sprite2D" parent="." unique_id=1489198521]
 unique_name_in_owner = true
-position = Vector2(0, -88)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, -24)
+scale = Vector2(0.063, 0.063)
 texture = ExtResource("2_b5ht1")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=633303299]
 unique_name_in_owner = true
 modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_wbm84")
 autoplay = "default"
+frame_progress = 0.13920195
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2008109851]
 unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_wbm84")
+visible = false
+shape = SubResource("CircleShape2D_b5ht1")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=917423026]
 script = ExtResource("3_b5ht1")
@@ -45,5 +51,9 @@ metadata/_custom_type_script = "uid://banb8nq0vrf4s"
 
 [node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox" unique_id=1487382251]
 unique_name_in_owner = true
-visible = false
 shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=2139169816]
+unique_name_in_owner = true
+simplify_path = true
+debug_enabled = true

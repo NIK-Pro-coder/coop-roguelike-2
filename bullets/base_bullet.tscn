@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://jrkrkwyju7rk" path="res://hitboxes/base_hitbox.gd" id="3_u1xu0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wbm84"]
-radius = 16.0
+radius = 4.0
 
 [node name="BaseBullet" type="CharacterBody2D" unique_id=272365184]
 collision_layer = 0
@@ -13,7 +13,7 @@ collision_mask = 4
 script = ExtResource("1_sxnja")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1930876332]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.063, 0.063)
 texture = ExtResource("1_ovbbc")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1668390296]

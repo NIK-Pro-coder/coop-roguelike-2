@@ -1,8 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED: float = 600.0
-const ACCEL: float = 100.0
+const SPEED: float = 250.0
+const ACCEL: float = 50.0
+
+@onready var hurtbox: Hurtbox = %Hurtbox
 
 @export var DEVICE_ID: int = -1
 
@@ -22,24 +24,31 @@ func get_aim_dir() -> Vector2:
   
   return (get_global_mouse_position() - global_position).normalized()
 
-const DASH_SPEED_MULT: float = 4.0
-const DASH_DURATION: float = 0.1
-const DASH_COOLDOWN: float = 0.5
+const DASH_SPEED_MULT: float = 2.5
+const DASH_DURATION: float = 0.3
+const DASH_COOLDOWN: float = 0.25
 
 var dash_timer: float = -0.5
 var dash_dir: Vector2 = Vector2.ZERO
+var was_dashing: bool = false
 func handle_movement(delta: float) -> void:
   dash_timer -= delta
+  hurtbox.active = dash_timer <= 0
   
   if dash_timer > 0:
     velocity = dash_dir * SPEED * DASH_SPEED_MULT * delta * 60
+    was_dashing = true
   else:
+    if was_dashing:
+      was_dashing = false
+      velocity = velocity.normalized() * SPEED
+    
     var new_v := get_movement_dir() * SPEED * delta * 60
     velocity = velocity.move_toward(
       new_v, ACCEL * delta * 60 * max(1, -velocity.dot(new_v) * 1.5)
     )
     
-    if dash_timer < -DASH_COOLDOWN and InputMngr.is_action_pressed("dodge", DEVICE_ID):
+    if dash_timer < -DASH_COOLDOWN and InputMngr.is_action_pressed("dash", DEVICE_ID) and get_movement_dir():
       dash_dir = get_movement_dir()
       dash_timer = DASH_DURATION
     

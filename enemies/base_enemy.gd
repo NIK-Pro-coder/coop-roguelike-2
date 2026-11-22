@@ -5,6 +5,7 @@ class_name BaseEnemy
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var collision: CollisionShape2D = %Collision
 @onready var hurtbox_collision: CollisionShape2D = %HurtboxCollision
+@onready var nav_agent: NavigationAgent2D = %NavAgent
 
 @export var enemy_data: EnemyData
 
@@ -94,7 +95,9 @@ func _process(delta: float) -> void:
     
   current_state.process_state(self, delta)
   
-  var p_delta: Vector2 = move_position - global_position
+  nav_agent.target_position = move_position
+  
+  var p_delta: Vector2 = nav_agent.get_next_path_position() - global_position
   velocity = velocity.move_toward(
     p_delta.normalized() * enemy_data.speed * delta * 60,
     enemy_data.speed * delta * 15

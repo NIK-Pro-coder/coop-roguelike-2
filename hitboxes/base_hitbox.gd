@@ -16,6 +16,10 @@ func _ready() -> void:
   
   if local_name == "":
     local_name = str(get_instance_id())
+  
+  for i in get_children():
+    if i is CollisionShape2D:
+      i.debug_color = Color(0, 1, .75, .2) if team == HitboxTeams.Player else Color(1, 0, .75, .2)
 
 func _process(_delta: float) -> void:
   for i in get_overlapping_areas():
