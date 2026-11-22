@@ -21,8 +21,9 @@ radius = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
 size = Vector2(32, 32)
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1036883504]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1036883504 groups=["enemy"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_bfj6p")
 
 [node name="AttackIndicator" type="Sprite2D" parent="." unique_id=1489198521]
@@ -56,4 +57,8 @@ shape = SubResource("RectangleShape2D_wbm84")
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=2139169816]
 unique_name_in_owner = true
 simplify_path = true
+avoidance_enabled = true
+radius = 20.0
 debug_enabled = true
+
+[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

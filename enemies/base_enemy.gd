@@ -52,6 +52,7 @@ func attack(what: Callable):
   attack_callable = what
 
 var move_position: Vector2 = Vector2.ZERO
+var safe_vel: Vector2 = Vector2.ZERO
 
 func _process(delta: float) -> void:
   if health <= 0:
@@ -98,9 +99,14 @@ func _process(delta: float) -> void:
   nav_agent.target_position = move_position
   
   var p_delta: Vector2 = nav_agent.get_next_path_position() - global_position
+  nav_agent.velocity = p_delta.normalized() * enemy_data.speed * delta * 60
+  
   velocity = velocity.move_toward(
-    p_delta.normalized() * enemy_data.speed * delta * 60,
+    safe_vel,
     enemy_data.speed * delta * 15
   )
 
   move_and_slide()
+
+func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
+  safe_vel = safe_velocity

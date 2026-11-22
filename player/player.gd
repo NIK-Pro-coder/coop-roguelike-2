@@ -15,14 +15,18 @@ func get_movement_dir() -> Vector2:
     DEVICE_ID
   )
 func get_aim_dir() -> Vector2:
+  var base_vec: Vector2 = Vector2.ZERO
+  
   if DEVICE_ID >= 0:
-    return InputMngr.get_vector(
+    base_vec = InputMngr.get_vector(
       "aim_left", "aim_right",
       "aim_up", "aim_down",
       DEVICE_ID
     )
-  
-  return (get_global_mouse_position() - global_position).normalized()
+  else :
+    base_vec = (get_global_mouse_position() - global_position).normalized()
+
+  return base_vec
 
 const DASH_SPEED_MULT: float = 2.5
 const DASH_DURATION: float = 0.3
@@ -67,3 +71,8 @@ func handle_weapon(delta: float) -> void:
 func _process(delta: float) -> void:
   handle_movement(delta)
   handle_weapon(delta)
+
+  DebugMngr.line(
+    global_position,
+    global_position + get_aim_dir() * 50
+  )
