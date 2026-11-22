@@ -2,9 +2,12 @@ extends Resource
 class_name EnemyData
 
 @export var name: String = ""
+@export var collision: Shape2D
+
+@export_category("Spawning")
 @export var budget_cost: float = 0.0
 @export var minimum_stage: int = 0
-@export var collision: Shape2D
+@export var spawn_weight: float = 1.0
 
 @export_category("Stats")
 @export var health: int = 0

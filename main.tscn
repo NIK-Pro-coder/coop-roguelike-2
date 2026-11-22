@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://bbauy1srk2kfd"]
 
 [ext_resource type="PackedScene" uid="uid://dw1078phksnim" path="res://player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://jn5yuvc2vbf8" path="res://enemies/base_enemy.tscn" id="2_h2yge"]
-[ext_resource type="Resource" uid="uid://bbeva6sf8lm45" path="res://enemies/enemy_data/grunt_enemy_data.tres" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://bfqbpvqluk57u" path="res://wave_logic/room_planner.gd" id="2_0xm2m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
 vertices = PackedVector2Array(846, 390, 1641.7031, 1131.0781, -482.8672, 1208.9063, 210, 390, -529.1328, -410, 210, 186, 1626.2969, -410, 846, 186)
@@ -18,26 +17,6 @@ size = Vector2(576, 144)
 [node name="Player" parent="." unique_id=667280632 instance=ExtResource("1_ig7tw")]
 position = Vector2(176, 152)
 
-[node name="BaseEnemy" parent="." unique_id=1036883504 instance=ExtResource("2_h2yge")]
-position = Vector2(448, 456)
-enemy_data = ExtResource("3_1bvp3")
-
-[node name="BaseEnemy2" parent="." unique_id=1543262529 instance=ExtResource("2_h2yge")]
-position = Vector2(520, 456)
-enemy_data = ExtResource("3_1bvp3")
-
-[node name="BaseEnemy3" parent="." unique_id=1887535966 instance=ExtResource("2_h2yge")]
-position = Vector2(608, 456)
-enemy_data = ExtResource("3_1bvp3")
-
-[node name="BaseEnemy4" parent="." unique_id=939227465 instance=ExtResource("2_h2yge")]
-position = Vector2(712, 456)
-enemy_data = ExtResource("3_1bvp3")
-
-[node name="BaseEnemy5" parent="." unique_id=1986517334 instance=ExtResource("2_h2yge")]
-position = Vector2(800, 456)
-enemy_data = ExtResource("3_1bvp3")
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=153564282]
 navigation_polygon = SubResource("NavigationPolygon_h2yge")
 
@@ -46,3 +25,7 @@ position = Vector2(528, 288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" unique_id=895531193]
 shape = SubResource("RectangleShape2D_wbm84")
+
+[node name="RoomPlanner" type="Node" parent="." unique_id=717765246]
+script = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://bfqbpvqluk57u"

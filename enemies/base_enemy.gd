@@ -17,7 +17,6 @@ var cooldown: float = 0.0
 
 func _ready() -> void:
   # Setup enemy from EnemyData resource
-  
   enemy_data = enemy_data.duplicate(true)
   
   collision.shape = enemy_data.collision

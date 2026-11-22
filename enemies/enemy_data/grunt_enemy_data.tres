@@ -26,8 +26,8 @@ metadata/_custom_type_script = "uid://bnqbdjwlgcr6o"
 [resource]
 script = ExtResource("1_sehar")
 name = "Grunt"
-budget_cost = 1.0
 collision = SubResource("RectangleShape2D_u564y")
+budget_cost = 1.0
 health = 10
 speed = 150.0
 damage = 2
