@@ -59,6 +59,5 @@ unique_name_in_owner = true
 simplify_path = true
 avoidance_enabled = true
 radius = 24.0
-debug_enabled = true
 
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

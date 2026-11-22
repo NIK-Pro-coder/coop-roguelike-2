@@ -16,3 +16,8 @@ func _ready() -> void:
     set_visible_aim_assist.emit(on)
     visible_aim_assist.release_focus()
   )
+
+@onready var fps_meter: RichTextLabel = %FpsMeter
+
+func _process(delta: float) -> void:
+  fps_meter.text = "%d fps" % [1 / delta]
