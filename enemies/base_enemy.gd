@@ -57,6 +57,8 @@ var move_position: Vector2 = Vector2.ZERO
 var safe_vel: Vector2 = Vector2.ZERO
 
 func _process(delta: float) -> void:
+  nav_agent.debug_enabled = DebugMngr.overlay_visible
+  
   if health <= 0:
     queue_free()
   

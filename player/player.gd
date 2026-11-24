@@ -137,7 +137,7 @@ var max_health: int = 100
 var health: int = 0:
   set(v):
     health = v
-    hp_visible = max(2.5, hp_visible + 2.5)
+    hp_visible = 2.5
 
 func _ready() -> void:
   health = max_health

@@ -105,7 +105,7 @@ func make_edges(p: Array[Vector2]) -> Array[Vector2i]:
 
 func pick_room_types(num: int) -> Dictionary[int, Room.RoomTypes]:
   var types: Dictionary[int, Room.RoomTypes] = {
-    0:     Room.RoomTypes.Start,
+    0:     Room.RoomTypes.Normal, # TODO: Make this Start not Normal
     num-1: Room.RoomTypes.Boss
   }
   
