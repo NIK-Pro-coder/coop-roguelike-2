@@ -21,6 +21,8 @@ InputMngr="*uid://do11bwbm8qev6"
 DebugMngr="*uid://c40rkgsdunny1"
 MapMngr="*uid://bfqbpvqluk57u"
 SignalBus="*uid://csjvbni5ggvtt"
+WaveMngr="*uid://xr7q5x2f42ok"
+GameMngr="*uid://drlrtu3qi22nf"
 
 [display]
 

@@ -130,7 +130,9 @@ func create_map() -> Map:
   
   var m: Map = Map.new()
   for i in range(encounter_num):
-    m.encounters.push_back(types[i])
+    var r: Room = Room.new()
+    r.type = types[i]
+    m.rooms.push_back(r)
   for i in edges:
     if i.x in m.edges:
       m.edges[i.x].push_back(i.y)
