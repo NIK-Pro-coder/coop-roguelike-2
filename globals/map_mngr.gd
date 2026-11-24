@@ -1,5 +1,4 @@
 extends Node
-class_name MapPlanner
 
 const MAP_X: float = 500
 const MAP_Y: float = 500
@@ -47,7 +46,6 @@ func make_edges(p: Array[Vector2]) -> Array[Vector2i]:
   var joined: Array[Vector2i] = []
   var queue: Array[int] = [len(p)-1]
   var deep: Dictionary[int, int] = {0: -1, len(p)-1: 0}
-  #var per_depth: Dictionary[int, int] = {0: 1}
   
   while queue:
     var e: int = queue.pop_front()
@@ -64,13 +62,7 @@ func make_edges(p: Array[Vector2]) -> Array[Vector2i]:
       joined.push_back(Vector2i(e, could[i].x))
       if !could[i].x in deep:
         deep[could[i].x] = deep[e]+1
-        #if deep[e]+1 in per_depth:
-        #  per_depth[deep[e]+1]+=1
-        #else:
-        #  per_depth[deep[e]+1]=1
       queue.push_back(could[i].x)
-  
-  #print(per_depth)
   
   var exits: Array[int] = []
   for i in joined: if !i.x in exits: exits.push_back(i.x)
@@ -111,10 +103,10 @@ func make_edges(p: Array[Vector2]) -> Array[Vector2i]:
   
   return new_j
 
-func pick_room_types(num: int) -> Dictionary[int, Map.RoomTypes]:
-  var types: Dictionary[int, Map.RoomTypes] = {
-    0:     Map.RoomTypes.Start,
-    num-1: Map.RoomTypes.Boss
+func pick_room_types(num: int) -> Dictionary[int, Room.RoomTypes]:
+  var types: Dictionary[int, Room.RoomTypes] = {
+    0:     Room.RoomTypes.Start,
+    num-1: Room.RoomTypes.Boss
   }
   
   var type_queue: Array[String] = []
@@ -122,14 +114,14 @@ func pick_room_types(num: int) -> Dictionary[int, Map.RoomTypes]:
   for i in range(num):
     if !i in types:
       if !type_queue:
-        type_queue.append_array(Array(Map.RoomTypes.keys()).slice(0, -2))
+        type_queue.append_array(Array(Room.RoomTypes.keys()).slice(0, -2))
         type_queue.shuffle()
       
-      types[i] = Map.RoomTypes[type_queue.pop_back()]
+      types[i] = Room.RoomTypes[type_queue.pop_back()]
   
   return types
 
-func plan_map() -> Map:
+func create_map() -> Map:
   var points = get_even_points(encounter_num)
   sort_points(points)
   var edges = make_edges(points)
