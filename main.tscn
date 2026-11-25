@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://dw1078phksnim" path="res://player/player.tscn" id="1_ig7tw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
-vertices = PackedVector2Array(846, 390, 1641.7031, 1131.0781, -482.8672, 1208.9063, 210, 390, -529.1328, -410, 210, 186, 1626.2969, -410, 846, 186)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
+vertices = PackedVector2Array(922, 238, 922, 82, 1626.2969, -410, 1641.7031, 1131.0781, -529.1328, -410, 230, 82, -482.8672, 1208.9063, 230, 238)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(7, 6, 4, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-560, -440, 1656, -440, 1672, 1160, -512, 1240)])
 agent_radius = 30.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbm84"]
-size = Vector2(576, 144)
+size = Vector2(632, 96)
 
 [node name="Main" type="Node2D" unique_id=2128504674]
 
@@ -23,6 +23,7 @@ navigation_polygon = SubResource("NavigationPolygon_h2yge")
 position = Vector2(528, 288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" unique_id=895531193]
+position = Vector2(48, -128)
 shape = SubResource("RectangleShape2D_wbm84")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1083105858]

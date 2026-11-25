@@ -26,6 +26,10 @@ var live_enemies: int = 0:
 func spawn_enemies(budget: float) -> void:
   var spawn_pos: Vector2 = get_viewport().get_camera_2d().global_position
   
+  if budget == 0:
+    SignalBus.room_cleared.emit(current_room)
+    return
+  
   while budget > 0:
     var could: Array[EnemyData] = enemydata_resources.filter(func(x: EnemyData): return x.budget_cost <= budget)
 
@@ -48,8 +52,11 @@ var current_room: Room
 var waves_to_spawn: int = 0
 
 func spawn_wave() -> void:
-  if waves_to_spawn <= 0: return
+  if waves_to_spawn <= 0:
+    SignalBus.room_cleared.emit(current_room)
+    return
   
+  SignalBus.wave_started.emit()
   waves_to_spawn -= 1
   spawn_enemies(base_budget * current_room.budget_mult())
 
