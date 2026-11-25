@@ -79,7 +79,7 @@ func get_aim_dir() -> Vector2:
 
   return base_vec
 
-const DASH_SPEED_MULT: float = 2.5
+const DASH_SPEED_MULT: float = 2.75
 const DASH_DURATION: float = 0.3
 const DASH_COOLDOWN: float = 0.25
 
