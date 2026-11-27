@@ -15,6 +15,6 @@ func process_state(enemy: BaseEnemy, _delta: float) -> void:
 @warning_ignore("unused_parameter")
 func attack(enemy: BaseEnemy) -> Callable:
   var f = func():
-    print("attack")
+    pass
   
   return f

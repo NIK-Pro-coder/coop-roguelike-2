@@ -56,7 +56,7 @@ func get_aim_dir() -> Vector2:
     
     if DebugMngr.aim_assist_visible:
       DebugMngr.line(global_position,i.global_position)
-      DebugMngr.string(dot, i.global_position + Vector2(0, 10))
+      DebugMngr.string(cross, i.global_position + Vector2(0, 10))
   
     if cross < c_cross or c_cross < 0:
       c_cross = cross
@@ -73,7 +73,7 @@ func get_aim_dir() -> Vector2:
     if DebugMngr.aim_assist_visible:
       DebugMngr.line(global_position, global_position + new_v * 250, Color.ORANGE)
       DebugMngr.circle(c_enemy.global_position, 30)
-      DebugMngr.string(angle_off, c_enemy.global_position)
+      DebugMngr.string(rad_to_deg(angle_off), c_enemy.global_position + Vector2(0, 20))
     
     return new_v
 
@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
   health_bar.modulate.a = health_bar.modulate.a * .9 + (.1 if hp_visible > 0 else 0.0)
   health_bar.value = health_bar.value * .75 + health * .25
 
-var max_health: int = 100
+var max_health: int = 10
 var health: int = 0:
   set(v):
     health = v

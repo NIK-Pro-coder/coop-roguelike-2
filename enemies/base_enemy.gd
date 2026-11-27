@@ -68,6 +68,8 @@ func _process(delta: float) -> void:
     died.emit()
     queue_free()
   
+  DebugMngr.string(current_state.get_script().get_global_name() if current_state else "None", global_position)
+  
   state_time -= delta
   
   attack_indicator.modulate.a = 0.0
@@ -77,6 +79,7 @@ func _process(delta: float) -> void:
     
     if attack_windup <= 0:
       attack_callable.call()
+    
     return
   
   if attack_cooldown > 0:
@@ -88,12 +91,14 @@ func _process(delta: float) -> void:
   if !target: return
   
   if state_time <= 0:
-    var best_score: float = -1.0
+    current_state = null
     
-    var weight_sum: int = 0
+    var weight_sum: float = 0
     
     for i in enemy_data.states:
       weight_sum += i.state_weight
+    
+    var best_score: float = 0.0
     
     for i in enemy_data.states:
       var s = i.get_score(self) * i.state_weight / weight_sum
@@ -104,21 +109,22 @@ func _process(delta: float) -> void:
     
     state_time = 0.25 # Minimum duration
   
-  if DebugMngr.enemies_frozen:
-    nav_agent.velocity = Vector2.ZERO
-  else:
+  move_position = global_position
+  
+  if !DebugMngr.enemies_frozen and current_state:
     current_state.process_state(self, delta)
-    DebugMngr.string(current_state.get_script().get_global_name(), global_position)
-    
     nav_agent.target_position = move_position
     
     var p_delta: Vector2 = nav_agent.get_next_path_position() - global_position
     nav_agent.velocity = p_delta.normalized() * enemy_data.speed * delta * 60
   
-  velocity = velocity.move_toward(
-    safe_vel,
-    enemy_data.speed * delta * 15
-  )
+  if !move_position.is_equal_approx(global_position):
+    velocity = velocity.move_toward(
+      safe_vel,
+      enemy_data.speed * delta * 15
+    )
+  else:
+    velocity = Vector2.ZERO
 
   move_and_slide()
 
@@ -126,4 +132,4 @@ func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
   safe_vel = safe_velocity
 
 func _on_contact_hitbox_hit_node(p: Player) -> void:
-  p.health -= 10
+  p.health -= enemy_data.damage

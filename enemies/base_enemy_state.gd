@@ -1,7 +1,7 @@
 extends Resource
 class_name BaseEnemyState
 
-@export var state_weight: int = 1
+@export var state_weight: float = 1
 
 @warning_ignore_start("unused_parameter")
 func get_score(enemy: BaseEnemy) -> float:

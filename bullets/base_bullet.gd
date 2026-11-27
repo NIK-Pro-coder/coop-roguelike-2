@@ -30,3 +30,5 @@ func _on_hitbox_hit_node(node: Node) -> void:
   
   if node is BaseEnemy:
     node.health -= damage
+  elif node is Player:
+    node.health -= damage
