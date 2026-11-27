@@ -7,6 +7,7 @@ class_name BaseEnemy
 @onready var hurtbox_collision: CollisionShape2D = %HurtboxCollision
 @onready var nav_agent: NavigationAgent2D = %NavAgent
 @onready var contact_hitbox: Hitbox = %ContactHitbox
+@onready var sight: RayCast2D = %Sight
 
 @export var enemy_data: EnemyData
 
@@ -89,6 +90,8 @@ func _process(delta: float) -> void:
   retarget()
   
   if !target: return
+  
+  sight.target_position = target.global_position - global_position
   
   if state_time <= 0:
     current_state = null

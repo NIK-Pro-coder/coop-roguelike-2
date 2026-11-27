@@ -74,5 +74,8 @@ simplify_path = true
 avoidance_enabled = true
 radius = 24.0
 
+[node name="Sight" type="RayCast2D" parent="." unique_id=482457068]
+unique_name_in_owner = true
+
 [connection signal="hit_node" from="ContactHitbox" to="." method="_on_contact_hitbox_hit_node"]
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

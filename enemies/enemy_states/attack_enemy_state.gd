@@ -10,11 +10,8 @@ func get_score(enemy: BaseEnemy) -> float:
   return 1.0
 
 func process_state(enemy: BaseEnemy, _delta: float) -> void:
-  enemy.attack(attack(enemy))
+  enemy.attack(attack.bind(enemy))
 
 @warning_ignore("unused_parameter")
-func attack(enemy: BaseEnemy) -> Callable:
-  var f = func():
-    pass
-  
-  return f
+func attack(enemy: BaseEnemy) -> void:
+  pass
