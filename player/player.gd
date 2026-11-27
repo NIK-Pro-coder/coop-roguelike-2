@@ -30,7 +30,7 @@ func get_aim_dir() -> Vector2:
   if DebugMngr.aim_assist_visible:
     DebugMngr.line(
       global_position,
-      global_position + get_aim_dir() * 250,
+      global_position + base_vec * 250,
       Color.GREEN
     )
     DebugMngr.line(
@@ -56,7 +56,7 @@ func get_aim_dir() -> Vector2:
     
     if DebugMngr.aim_assist_visible:
       DebugMngr.line(global_position,i.global_position)
-      DebugMngr.string(dot, i.global_position + Vector2(0, 20))
+      DebugMngr.string(dot, i.global_position + Vector2(0, 10))
   
     if cross < c_cross or c_cross < 0:
       c_cross = cross
@@ -71,7 +71,7 @@ func get_aim_dir() -> Vector2:
     )
     
     if DebugMngr.aim_assist_visible:
-      DebugMngr.line(global_position, global_position + base_vec * 250, Color.ORANGE)
+      DebugMngr.line(global_position, global_position + new_v * 250, Color.ORANGE)
       DebugMngr.circle(c_enemy.global_position, 30)
       DebugMngr.string(angle_off, c_enemy.global_position)
     
@@ -115,8 +115,10 @@ var weapon_cooldown: float = 0.0
 func handle_weapon(delta: float) -> void:
   weapon_cooldown -= delta
   
+  var aim_dir: Vector2 = get_aim_dir()
+  
   if weapon_cooldown < 0.0 and InputMngr.is_action_pressed("attack", DEVICE_ID):
-    weapon.attack(self, get_aim_dir()) # TODO: Aim assist
+    weapon.attack(self, aim_dir)
     weapon_cooldown = weapon.cooldown
 
 @onready var health_bar: ProgressBar = %HealthBar

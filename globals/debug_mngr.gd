@@ -39,17 +39,26 @@ func circle(center: Vector2, radius: float, col: Color = Color.RED, filled: bool
     "filled": filled
   })
 
-func string(text: Variant, pos: Vector2) -> void:
+func string(text: Variant, pos: Vector2, col: Color = Color.WHITE) -> void:
   strings.append({
     "pos": pos,
-    "text": str(text)
+    "text": str(text),
+    "col": col
   })
 
 func _draw() -> void:
   if overlay_visible:
     for l in lines: draw_line(l.from, l.to, l.col)
     for c in circles: draw_circle(c.center, c.radius, c.col, c.filled)
-    for s in strings: draw_string(ThemeDB.fallback_font, s.pos, s.text)
+    for s in strings: draw_string(
+      ThemeDB.fallback_font, 
+      s.pos, 
+      s.text, 
+      HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT, 
+      -1, 
+      8,
+      s.col
+    )
   
   lines.clear()
   circles.clear()

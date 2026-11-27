@@ -16,6 +16,8 @@ var windup: float = 0.0
 var cooldown: float = 0.0
 
 func _ready() -> void:
+  attack_indicator.visible = false
+  
   # Setup enemy from EnemyData resource
   enemy_data = enemy_data.duplicate(true)
   
@@ -60,6 +62,7 @@ signal died
 
 func _process(delta: float) -> void:
   nav_agent.debug_enabled = DebugMngr.overlay_visible
+  DebugMngr.string(enemy_data.name, global_position + Vector2(0, -10))
   
   if health <= 0:
     died.emit()
